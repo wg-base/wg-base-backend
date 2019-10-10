@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: dev
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  jackson:
+    time-zone: Asia/Shanghai
+
+server:
+  port: 9000
+  servlet:
+    context-path: /base-backend
+
+logging:
+  file: logs.log
