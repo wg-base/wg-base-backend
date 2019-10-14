@@ -1,5 +1,6 @@
 package com.wg.base.backend.job;
 
+import com.wg.base.backend.util.TokenUtils;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
@@ -21,13 +22,15 @@ public class TaskJobs {
     /**
      * 测试token时效性
      */
-    @Scheduled(initialDelay = 1000*60 ,fixedDelay = 1000*60*10)
+    @Scheduled(initialDelay = 1000*60 ,fixedDelay = 1000*60)
     public void synRealFlow(){
         RLock rLock = redissonClient.getLock(TOKEN_TEST);
         try {
             if (rLock.tryLock()) {
                 LOGGER.info("测试token时效性--开始");
-
+                String token = TokenUtils.sign("wangliheng","10");
+                boolean flag=TokenUtils.verify(token);
+                LOGGER.info("flag is -- "+ flag);
                 LOGGER.info("测试token时效性--结束");
             } else {
                 LOGGER.info("failed to get lock {}", TOKEN_TEST);
