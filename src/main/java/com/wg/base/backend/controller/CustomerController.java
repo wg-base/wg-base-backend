@@ -31,6 +31,7 @@ public class CustomerController {
     @PostMapping()
     @ApiOperation(value="添加用户", notes="添加用户")
     @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header",dataType = "String", name ="access_token", value ="token",required = true)
     })
     public Result<Customer> addCustomer(@RequestBody CustomerAddBean customerAddBean){
         return Result.success(customerService.addCustomer(customerAddBean));
@@ -39,6 +40,7 @@ public class CustomerController {
     @GetMapping("/{id}")
     @ApiOperation(value="获取用户", notes="获取用户")
     @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header",dataType = "String", name ="access_token", value ="token",required = true),
             @ApiImplicitParam(paramType = "path",dataType = "Long", name ="id", value ="用户ID",required = true)
     })
     public Result<Customer> getCustomer(@PathVariable Long id){
@@ -46,7 +48,7 @@ public class CustomerController {
     }
 
     @GetMapping("/login")
-    @ApiOperation(value="获取用户", notes="获取用户")
+    @ApiOperation(value="登录", notes="登录")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query",dataType = "String", name ="userName", value ="用户名",required = true),
             @ApiImplicitParam(paramType = "query",dataType = "String", name ="password", value ="密码",required = true)
@@ -58,6 +60,7 @@ public class CustomerController {
     @GetMapping("/all")
     @ApiOperation(value="获取所有用户", notes="获取所有用户")
     @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header",dataType = "String", name ="access_token", value ="token",required = true)
     })
     public Result<List<Customer>> getCustomerAll(){
         return Result.success(customerService.getCustomerAll());
@@ -66,6 +69,7 @@ public class CustomerController {
     @GetMapping("/list")
     @ApiOperation(value="获取用户--分页", notes="获取用户--分页")
     @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header",dataType = "String", name ="access_token", value ="token",required = true),
             @ApiImplicitParam(paramType = "query",dataType = "String", name ="customerName", value ="用户名称"),
             @ApiImplicitParam(paramType = "query",dataType = "Integer", name ="ageStart", value ="年龄范围"),
             @ApiImplicitParam(paramType = "query",dataType = "Integer", name ="ageEnd", value ="年龄范围")
@@ -77,6 +81,7 @@ public class CustomerController {
     @PutMapping()
     @ApiOperation(value="更新用户", notes="更新用户")
     @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header",dataType = "String", name ="access_token", value ="token",required = true)
     })
     public Result<Customer> updateCustomer(@RequestBody CustomerUpdateBean customerUpdateBean){
         return Result.success(customerService.updateCustomer(customerUpdateBean));
@@ -85,6 +90,7 @@ public class CustomerController {
     @DeleteMapping("/{id}")
     @ApiOperation(value="删除用户", notes="删除用户")
     @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "header",dataType = "String", name ="access_token", value ="token",required = true),
             @ApiImplicitParam(paramType = "path",dataType = "Long", name ="id", value ="用户ID",required = true)
     })
     public Result<String> deleteCustomer(@PathVariable Long id){

@@ -1,5 +1,7 @@
 package com.wg.base.backend.controller.interceptor;
 
+import com.wg.base.backend.common.exception.LogicException;
+import com.wg.base.backend.common.result.ResultMessage;
 import com.wg.base.backend.util.TokenUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,16 +28,24 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
+        String url = request.getRequestURL().toString();
         LOGGER.info("request getContextPath is --" +request.getContextPath());
         LOGGER.info("request getServletPath is --" +request.getServletPath());
-        String token = request.getHeader("access_token");
-        if (token != null) {
-            boolean result = TokenUtils.verify(token);
-            if (result) {
-                return true;
-            }
+        LOGGER.info("request url is --" +url);
+        if(url.contains("swagger")||url.contains("/error")) {
+            LOGGER.info("Interceptor return true...");
+            return true;
         }
-        return false;
+        String token = request.getHeader("access_token");
+        if(token == null){
+            throw new LogicException(ResultMessage.TOKEN_EMPTY_ERROR);
+        }
+        boolean result = TokenUtils.verify(token);
+        if (!result) {
+            throw new LogicException(ResultMessage.TOKEN_INVALID_ERROR);
+        }
+        LOGGER.info("access_token is right..." );
+        return true;
     }
 
 }

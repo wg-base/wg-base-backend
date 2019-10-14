@@ -9,11 +9,12 @@ public class ResultMessage {
     public static ResultMessage SUCCESS=new ResultMessage(0,"success");
 
     public static ResultMessage SERVER_ERROR=new ResultMessage(500,"服务端异常");
-    public static ResultMessage PASSWORD_EMPTY=new ResultMessage(50001,"密码不能为空");
     public static ResultMessage MOBILE_EMPTY=new ResultMessage(50002,"手机号不能为空");
     public static ResultMessage MOBILE_ERROR=new ResultMessage(50003,"手机号格式错误");
     public static ResultMessage NO_USER = new ResultMessage(50004,"用户不存在");
     public static ResultMessage PASSWORD_ERROR = new ResultMessage(50005,"密码错误");
+    public static ResultMessage TOKEN_EMPTY_ERROR=new ResultMessage(50006,"token为空");
+    public static ResultMessage TOKEN_INVALID_ERROR=new ResultMessage(50007,"token错误或已失效");
 
     public ResultMessage fillArgs(Object...args){
         int code=this.code;
