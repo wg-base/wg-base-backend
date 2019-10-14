@@ -1,4 +1,4 @@
-package com.wg.base.backend.controller.intercepter;
+package com.wg.base.backend.controller.interceptor;
 
 import com.wg.base.backend.util.TokenUtils;
 import org.slf4j.Logger;

@@ -1,6 +1,6 @@
 package com.wg.base.backend.config;
 
-import com.wg.base.backend.controller.intercepter.LoginInterceptor;
+import com.wg.base.backend.controller.interceptor.LoginInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
