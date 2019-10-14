@@ -7,5 +7,4 @@ spring:
 lock:
   redis:
     address: redis://localhost:6379
-    password:
-
+    password: root
