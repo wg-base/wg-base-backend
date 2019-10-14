@@ -45,6 +45,16 @@ public class CustomerController {
         return Result.success(customerService.getCustomerById(id));
     }
 
+    @GetMapping("/login")
+    @ApiOperation(value="获取用户", notes="获取用户")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query",dataType = "String", name ="userName", value ="用户名",required = true),
+            @ApiImplicitParam(paramType = "query",dataType = "String", name ="password", value ="密码",required = true)
+    })
+    public Result<String> login(String userName,String password){
+        return Result.success(customerService.getLogin(userName,password));
+    }
+
     @GetMapping("/all")
     @ApiOperation(value="获取所有用户", notes="获取所有用户")
     @ApiImplicitParams({

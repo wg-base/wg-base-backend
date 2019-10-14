@@ -14,6 +14,8 @@ public interface CustomerService {
 
     Customer getCustomerById(Long id);
 
+    String getLogin(String userName,String password);
+
     List<Customer> getCustomerAll();
 
     QueryResults<Customer> getCustomerByPage(BasePageable basePageable, String customerName, Integer ageStart, Integer ageEnd);

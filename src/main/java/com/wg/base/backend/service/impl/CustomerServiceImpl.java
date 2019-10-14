@@ -4,13 +4,17 @@ import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.wg.base.backend.common.exception.LogicException;
 import com.wg.base.backend.common.page.BasePageable;
+import com.wg.base.backend.common.result.ResultMessage;
 import com.wg.base.backend.controller.bean.CustomerAddBean;
 import com.wg.base.backend.controller.bean.CustomerUpdateBean;
 import com.wg.base.backend.dao.CustomerRepository;
 import com.wg.base.backend.domain.Customer;
 import com.wg.base.backend.domain.QCustomer;
 import com.wg.base.backend.service.CustomerService;
+import com.wg.base.backend.util.Md5Utils;
+import com.wg.base.backend.util.TokenUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer addCustomer(CustomerAddBean customerAddBean) {
+        customerAddBean.setPassword(Md5Utils.generate(customerAddBean.getPassword()));
         Customer customer = new Customer(customerAddBean);
         return customerRepository.saveAndFlush(customer);
     }
@@ -38,6 +43,23 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer getCustomerById(Long id) {
         return customerRepository.getOne(id);
+    }
+
+    @Override
+    public String getLogin(String userName, String password) {
+        QCustomer customer=QCustomer.customer;
+        Customer user=jpaQueryFactory.selectFrom(customer)
+                .where(customer.customerName.eq(userName))
+                .fetchOne();
+        if(user==null){
+            throw new LogicException(ResultMessage.NO_USER);
+        }
+        if(!Md5Utils.verify(password,user.getPassword())){
+            throw new LogicException(ResultMessage.PASSWORD_ERROR);
+        }
+        LOGGER.info("密码验证通过,返回用户token");
+        String token = TokenUtils.sign(user.getCustomerName(),user.getId().toString());
+        return token;
     }
 
     @Override
