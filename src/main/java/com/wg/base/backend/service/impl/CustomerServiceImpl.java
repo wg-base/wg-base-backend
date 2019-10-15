@@ -14,6 +14,7 @@ import com.wg.base.backend.domain.Customer;
 import com.wg.base.backend.domain.QCustomer;
 import com.wg.base.backend.service.CustomerService;
 import com.wg.base.backend.util.Md5Utils;
+import com.wg.base.backend.util.RedisUtils;
 import com.wg.base.backend.util.TokenUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -32,12 +33,16 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
     @Autowired
     private JPAQueryFactory jpaQueryFactory;
+    @Autowired
+    private RedisUtils redisUtils;
 
     @Override
     public Customer addCustomer(CustomerAddBean customerAddBean) {
         customerAddBean.setPassword(Md5Utils.generate(customerAddBean.getPassword()));
         Customer customer = new Customer(customerAddBean);
-        return customerRepository.saveAndFlush(customer);
+        Customer returnCustomer = customerRepository.saveAndFlush(customer);
+        redisUtils.set(returnCustomer.getId().toString(),returnCustomer);
+        return returnCustomer;
     }
 
     @Override
