@@ -15,6 +15,8 @@ public class ResultMessage {
     public static ResultMessage PASSWORD_ERROR = new ResultMessage(50005,"密码错误");
     public static ResultMessage TOKEN_EMPTY_ERROR=new ResultMessage(50006,"token为空");
     public static ResultMessage TOKEN_INVALID_ERROR=new ResultMessage(50007,"token错误或已失效");
+    public static ResultMessage MESSAGE_EMPTY_ERROR=new ResultMessage(50008,"信息内容为空");
+    public static ResultMessage MOBILE_FREQUENTLY_ERROR=new ResultMessage(50009,"一分钟后重试");
 
     public ResultMessage fillArgs(Object...args){
         int code=this.code;
