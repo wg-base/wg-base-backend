@@ -4,6 +4,7 @@ import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.wg.base.backend.common.Constant;
 import com.wg.base.backend.common.exception.LogicException;
 import com.wg.base.backend.common.page.BasePageable;
 import com.wg.base.backend.common.result.ResultMessage;
@@ -41,7 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
         customerAddBean.setPassword(Md5Utils.generate(customerAddBean.getPassword()));
         Customer customer = new Customer(customerAddBean);
         Customer returnCustomer = customerRepository.saveAndFlush(customer);
-        redisUtils.set(returnCustomer.getId().toString(),returnCustomer);
+        redisUtils.set(Constant.REDIS_CUSTOMER+returnCustomer.getId(),returnCustomer);
         return returnCustomer;
     }
 

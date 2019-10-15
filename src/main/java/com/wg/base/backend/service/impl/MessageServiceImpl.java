@@ -1,5 +1,6 @@
 package com.wg.base.backend.service.impl;
 
+import com.wg.base.backend.common.Constant;
 import com.wg.base.backend.service.MessageService;
 import com.wg.base.backend.util.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public boolean checkCanSend(String phone) {
         boolean flag = false;
-        String key = "MSG_" + phone;
+        String key = Constant.REDIS_MSG + phone;
         long count = redisUtils.incr(key, 1);
         if (count == 1) {
             redisUtils.expire(key,60);
