@@ -16,19 +16,19 @@ public class TaskJobs {
 
     public static final String TOKEN_TEST = "TOKEN_TEST";
 
+    private static final String token=TokenUtils.sign("wangliheng","10");
     @Autowired
     private RedissonClient redissonClient;
 
     /**
      * 测试token时效性
      */
-    @Scheduled(initialDelay = 1000*60 ,fixedDelay = 1000*60)
-    public void synRealFlow(){
+    @Scheduled(initialDelay = 1000*60 ,fixedDelay = 1000*30)
+    public void testToken(){
         RLock rLock = redissonClient.getLock(TOKEN_TEST);
         try {
             if (rLock.tryLock()) {
                 LOGGER.info("测试token时效性--开始");
-                String token = TokenUtils.sign("wangliheng","10");
                 boolean flag=TokenUtils.verify(token);
                 LOGGER.info("flag is -- "+ flag);
                 LOGGER.info("测试token时效性--结束");
