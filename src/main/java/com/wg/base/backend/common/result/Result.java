@@ -7,8 +7,8 @@ public class Result<T> {
     private T data;
 
     private Result(T data){
-        this.code=0;
-        this.msg="success";
+        this.code=ResultMessage.SUCCESS.getCode();
+        this.msg=ResultMessage.SUCCESS.getMsg();
         this.data=data;
     }
 
