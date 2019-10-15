@@ -1,7 +1,7 @@
 package com.wg.base.backend;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.wg.base.backend.config.RedissonProperties;
+import com.wg.base.backend.config.RedissonConfig;
 import org.apache.commons.lang3.StringUtils;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
@@ -32,22 +32,22 @@ public class BackendApplication {
 
     @Bean
     @ConfigurationProperties(prefix = "lock.redis")
-    public RedissonProperties redissonProperties(){
-        return new RedissonProperties();
+    public RedissonConfig redissonConfig(){
+        return new RedissonConfig();
     }
 
     @Bean
     RedissonClient redissonSingle() {
-        RedissonProperties redissonProperties = redissonProperties();
+        RedissonConfig redissonConfig = redissonConfig();
         Config config = new Config();
         SingleServerConfig serverConfig = config.useSingleServer()
-                .setAddress(redissonProperties.getAddress())
-                .setTimeout(redissonProperties.getTimeout())
-                .setConnectionPoolSize(redissonProperties.getConnectionPoolSize())
-                .setConnectionMinimumIdleSize(redissonProperties.getConnectionMinimumIdleSize());
+                .setAddress(redissonConfig.getAddress())
+                .setTimeout(redissonConfig.getTimeout())
+                .setConnectionPoolSize(redissonConfig.getConnectionPoolSize())
+                .setConnectionMinimumIdleSize(redissonConfig.getConnectionMinimumIdleSize());
 
-        if(StringUtils.isNotBlank(redissonProperties.getPassword())) {
-            serverConfig.setPassword(redissonProperties.getPassword());
+        if(StringUtils.isNotBlank(redissonConfig.getPassword())) {
+            serverConfig.setPassword(redissonConfig.getPassword());
         }
         return Redisson.create(config);
     }

@@ -3,7 +3,7 @@ package com.wg.base.backend.config;
 import lombok.Data;
 
 @Data
-public class RedissonProperties {
+public class RedissonConfig {
 
     private int timeout = 3000;
     private String address;
