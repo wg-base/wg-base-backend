@@ -7,6 +7,11 @@ import java.util.Random;
 
 public class Md5Utils {
 
+    /**
+     * MD5
+     * @param password
+     * @return
+     */
     public static String generate(String password) {
         Random r = new Random();
         StringBuilder sb = new StringBuilder(16);

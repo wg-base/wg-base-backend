@@ -39,6 +39,11 @@ public class TokenUtils {
         }
     }
 
+    /**
+     * 验证签名
+     * @param token
+     * @return
+     */
     public static boolean verify(String token) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(TOKEN_SECRET);
@@ -50,12 +55,4 @@ public class TokenUtils {
         }
     }
 
-    public static String getUsername(String token) {
-        try {
-            DecodedJWT jwt = JWT.decode(token);
-            return jwt.getClaim("loginName").asString();
-        } catch (JWTDecodeException e) {
-            return null;
-        }
-    }
 }

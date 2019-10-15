@@ -12,6 +12,12 @@ import java.net.URL;
 
 public class HttpsUtils {
 
+    /**
+     * https post
+     * @param url
+     * @param param
+     * @return
+     */
     public static String sendPost(String url, String param) {
         PrintWriter out = null;
         BufferedReader in = null;
