@@ -41,7 +41,7 @@ public class MessageController {
         return Result.success(null);
     }
 
-    private static void checkPhoneAndMsg(String phone,String msg,boolean flag){
+    private void checkPhoneAndMsg(String phone,String msg,boolean flag){
         if(StringUtils.isBlank(phone)){
             throw new LogicException(ResultMessage.MOBILE_EMPTY);
         }
