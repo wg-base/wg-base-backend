@@ -18,10 +18,10 @@ public class KafkaServiceImpl implements KafkaService {
 
     @Override
     public void send(String message) {
-        kafkaTemplate.send(Constant.KAFKA_TOPIC,message);
+        //kafkaTemplate.send(Constant.KAFKA_TOPIC,message);
     }
 
-    @KafkaListener(topics = Constant.KAFKA_TOPIC)
+    //@KafkaListener(topics = Constant.KAFKA_TOPIC)
     public void receive(ConsumerRecord<?, ?> consumerRecord) {
         log.info("topic is: " + consumerRecord.topic() );
         log.info("key is: " + consumerRecord.key());

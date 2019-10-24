@@ -51,7 +51,7 @@ public class TaskJobs {
     /**
      * send message to kafka
      */
-    @Scheduled(initialDelay = 1000*60 ,fixedDelay = 1000*30)
+    //@Scheduled(initialDelay = 1000*60 ,fixedDelay = 1000*30)
     public void send(){
         RLock rLock = redissonClient.getLock(KAFKA_MESSAGE);
         try {
