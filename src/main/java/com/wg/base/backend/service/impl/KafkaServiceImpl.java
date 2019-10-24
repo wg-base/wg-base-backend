@@ -21,7 +21,6 @@ public class KafkaServiceImpl implements KafkaService {
         kafkaTemplate.send(Constant.KAFKA_TOPIC,message);
     }
 
-    @Override
     @KafkaListener(topics = Constant.KAFKA_TOPIC)
     public void receive(ConsumerRecord<?, ?> consumerRecord) {
         log.info("topic is: " + consumerRecord.topic() );
