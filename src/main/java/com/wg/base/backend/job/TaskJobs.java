@@ -17,9 +17,9 @@ public class TaskJobs {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TaskJobs.class);
 
-    public static final String TOKEN_TEST = "TOKEN_TEST";
+    private static final String TOKEN_TEST = "TOKEN_TEST";
 
-    public static final String KAFKA_MESSAGE = "KAFKA_MESSAGE";
+    private static final String KAFKA_MESSAGE = "KAFKA_MESSAGE";
 
     private static final String token=TokenUtils.sign("wangliheng","10");
 
