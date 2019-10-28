@@ -11,8 +11,4 @@ public class CustomerUpdateBean extends CustomerAddBean{
     @ApiModelProperty(value = "ID")
     private Long id;
 
-    @ApiModelProperty(value = "用户名")
-    private String userName;
-
-
 }
