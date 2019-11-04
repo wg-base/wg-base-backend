@@ -20,3 +20,19 @@
 - 集成
 - CRUD公共类
 
+## deploy
+```
+1. 因为用的是容器数据库，用docker部署需要先修改yml配置文件,如 prod：
+ - mysql：改为容器名称
+ - redis：改为容器名称
+ - mongo：改为容器名称
+2. mvn clean package -Dmaven.test.skip=true
+3. docker build -t wg:1.0.0 .
+4. docker run -d --rm -p9000:9000 --link=mysql:wg_base --link=redis:redis --link=mongodb:wg --name wg wg:1.0.0
+
+```
+
+
+
+
+

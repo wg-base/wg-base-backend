@@ -1,12 +1,12 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/wg_base?useUnicode=true&characterEncoding=utf-8&&serverTimezone=Asia/Shanghai&useLegacyDatetimeCode=false
+    url: jdbc:mysql://mysql:3306/wg_base?useUnicode=true&characterEncoding=utf-8&&serverTimezone=Asia/Shanghai&useLegacyDatetimeCode=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   redis:
     database: 0
-    host: localhost
+    host: redis
     port: 6379
     password: root
     jedis:
@@ -33,10 +33,10 @@ spring:
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
   data:
     mongodb:
-      host: localhost
+      host: mongodb
       port: 27017
       database: wg
 lock:
   redis:
-    address: redis://localhost:6379
+    address: redis://redis:6379
     password: root
