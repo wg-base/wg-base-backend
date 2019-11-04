@@ -30,6 +30,9 @@
 3. docker build -t wg:1.0.0 .
 4. docker run -d --rm -p9000:9000 --link=mysql:wg_base --link=redis:redis --link=mongodb:wg --name wg wg:1.0.0
 
+- 关于 --net=host
+  可以解决容器之间连接的问题，但无法将端口映射到宿主机，访问不到项目。
+
 ```
 
 
