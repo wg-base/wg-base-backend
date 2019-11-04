@@ -17,4 +17,6 @@
 ### Kafka
 - false
 ### mongo
+- 集成
+- CRUD公共类
 

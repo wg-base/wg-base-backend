@@ -31,6 +31,11 @@ spring:
                                   # none:topic各分区都存在已提交的offset时，从offset后开始消费；只要有一个分区不存在已提交的offset，则抛出异常
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: wg
 lock:
   redis:
     address: redis://localhost:6379
