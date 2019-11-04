@@ -15,7 +15,7 @@ import com.wg.base.backend.domain.Customer;
 import com.wg.base.backend.domain.QCustomer;
 import com.wg.base.backend.service.CustomerService;
 import com.wg.base.backend.util.Md5Utils;
-import com.wg.base.backend.util.RedisUtils;
+import com.wg.base.backend.dao.common.RedisUtils;
 import com.wg.base.backend.util.TokenUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

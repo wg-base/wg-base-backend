@@ -2,7 +2,7 @@ package com.wg.base.backend.service.impl;
 
 import com.wg.base.backend.common.Constant;
 import com.wg.base.backend.service.MessageService;
-import com.wg.base.backend.util.RedisUtils;
+import com.wg.base.backend.dao.common.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

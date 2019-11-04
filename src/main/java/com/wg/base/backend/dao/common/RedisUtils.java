@@ -1,4 +1,4 @@
-package com.wg.base.backend.util;
+package com.wg.base.backend.dao.common;
 
 import com.wg.base.backend.common.enums.Status;
 import org.springframework.beans.factory.annotation.Autowired;

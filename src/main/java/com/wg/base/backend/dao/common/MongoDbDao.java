@@ -1,4 +1,4 @@
-package com.wg.base.backend.util;
+package com.wg.base.backend.dao.common;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
