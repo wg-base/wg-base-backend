@@ -30,6 +30,9 @@
 1. mvn clean package -Dmaven.test.skip=true
 2. docker build -t wg:1.0.0 .
 3. docker run -d --rm -p9000:9000 --link=mysql:wg_base --link=redis:redis --link=mongodb:wg --name wg wg:1.0.0
+# --link=mysql:wg_base  其中mysql为容器名称，wg_base为数据库名称。
+# --link=redis:redis  其中redis为容器名称，后面的redis为任意。
+# --link=mongodb:wg  其中mongodb为容器名称，wg为数据库名称。
 ```
 ##### 关于 --net=host
   可以解决容器之间连接的问题，但无法将端口映射到宿主机，访问不到项目。
