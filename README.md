@@ -25,7 +25,7 @@
 -  轮循，ajax的方式
 - 长连接，如sse，websocket
 - 老一点的DWR技术
-```aidl
+```
     <dependency>  
         <groupId>org.springframework.boot</groupId>  
         <artifactId>spring-boot-starter-websocket</artifactId>  
